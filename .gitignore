@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+cifar10_datasets/
+.ipynb_checkpoints/
+.DS_Store
