@@ -4,6 +4,8 @@
 
 Five graduate homework projects in PyTorch: regression on analytic fluid flows, a CNN on CIFAR-10, neural style transfer and a physics-informed neural network. Each task comes in three levels: basic, medium and advanced.
 
+[Flora Liu · floraliu.dev](https://floraliu.dev/about#work)
+
 <img src="docs/style-transfer.gif" width="760" alt="Content plus Starry Night style converging over 950 iterations">
 
 </div>
