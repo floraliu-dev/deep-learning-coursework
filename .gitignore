@@ -3,3 +3,4 @@ __pycache__/
 cifar10_datasets/
 .ipynb_checkpoints/
 .DS_Store
+Generative and Neural Style Transfer/out/

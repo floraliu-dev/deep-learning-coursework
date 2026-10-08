@@ -6,7 +6,7 @@ Five graduate homework projects in PyTorch: regression on analytic fluid flows, 
 
 [Flora Liu · floraliu.dev](https://floraliu.dev/about#work)
 
-<img src="docs/style-transfer.gif" width="760" alt="Content plus Starry Night style converging over 950 iterations">
+<img src="docs/style-transfer.gif" width="760" alt="A sea-steps photo taking on Starry Night style, step by step">
 
 </div>
 
@@ -15,9 +15,16 @@ Five graduate homework projects in PyTorch: regression on analytic fluid flows, 
 
 ## Results
 
-**Neural style transfer (HW4).** VGG19 features, optimized with L-BFGS. The animation above shows the notebook run, and below is `dpl4_basic.py`:
+**Neural style transfer (HW4).** VGG19 features, optimized with L-BFGS. Both animations come from [`nst_improved.py`](Generative%20and%20Neural%20Style%20Transfer/nst_improved.py), a retrained version of the assignment. Compared with the submitted `dpl4_*.py`, it:
 
-<img src="docs/style-basic.png" width="760" alt="Campus photo plus Zodiac style gives the stylized result">
+- starts from the photo instead of white noise, so no noise is left in the result
+- keeps the photo's aspect ratio instead of squashing it to 512 × 512
+- uses the layers from Gatys et al.: content from conv4_2, style from conv1_1 to conv5_1
+- adds a small total-variation term, and refines from 384 px to 768 px
+
+<img src="docs/style-zodiac.gif" width="760" alt="A campus photo taking on the style of Mucha's Zodiac, step by step">
+
+The submitted scripts and notebook are unchanged. Sea photo: [Stairs to the sea, Skerries, Ireland](https://www.flickr.com/photos/87690240@N03/16313873296) by Giuseppe Milo, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
 
 **The other four assignments.** The figures are taken from each write-up:
 
@@ -41,6 +48,10 @@ Each folder holds `dplN_basic.py`, `dplN_med.py` and `dplN_adv.py`.
 pip install torch torchvision matplotlib numpy tqdm deepxde
 cd "Generative and Neural Style Transfer"
 python dpl4_basic.py
+
+# retrained version, and the GIF
+python nst_improved.py --content data/images/content/sea-steps.jpg --style "data/images/style/The Starry Night.jpg" --out out/starry --style-weight 1e7
+python make_gif.py out/starry data/images/content/sea-steps.jpg "data/images/style/The Starry Night.jpg" "Starry Night" out/starry.gif
 ```
 
 Paths are resolved relative to each script. CIFAR-10 downloads automatically on the first run.
@@ -54,9 +65,16 @@ Paths are resolved relative to each script. CIFAR-10 downloads automatically on 
 
 ## 成果
 
-**神經風格轉換（HW4）**：使用 VGG19 特徵，以 L-BFGS 最佳化。上方動畫是 notebook 的執行過程，下圖是 `dpl4_basic.py` 的結果：
+**神經風格轉換（HW4）**：使用 VGG19 特徵，以 L-BFGS 最佳化。兩段動畫都來自重新訓練的 [`nst_improved.py`](Generative%20and%20Neural%20Style%20Transfer/nst_improved.py)。和當初繳交的 `dpl4_*.py` 相比：
 
-<img src="docs/style-basic.png" width="760" alt="校園照片加上 Zodiac 風格，得到風格化結果">
+- 從照片開始最佳化，而不是白雜訊，結果不會殘留雜訊
+- 保留照片原比例，不再壓成 512 × 512
+- 採用 Gatys 等人的層設定：content 取 conv4_2，style 取 conv1_1 到 conv5_1
+- 加上少量 total variation 平滑項，並從 384 px 精修到 768 px
+
+<img src="docs/style-zodiac.gif" width="760" alt="校園照片逐步套上 Mucha《Zodiac》的風格">
+
+當初繳交的程式與 notebook 都保留原樣。海邊照片：[Stairs to the sea, Skerries, Ireland](https://www.flickr.com/photos/87690240@N03/16313873296) by Giuseppe Milo, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/)。
 
 **其他四份作業**：圖片取自各份書面報告。
 
@@ -80,6 +98,10 @@ Paths are resolved relative to each script. CIFAR-10 downloads automatically on 
 pip install torch torchvision matplotlib numpy tqdm deepxde
 cd "Generative and Neural Style Transfer"
 python dpl4_basic.py
+
+# retrained version, and the GIF
+python nst_improved.py --content data/images/content/sea-steps.jpg --style "data/images/style/The Starry Night.jpg" --out out/starry --style-weight 1e7
+python make_gif.py out/starry data/images/content/sea-steps.jpg "data/images/style/The Starry Night.jpg" "Starry Night" out/starry.gif
 ```
 
 路徑都以程式所在位置為基準。第一次執行時會自動下載 CIFAR-10。
